@@ -1,6 +1,7 @@
 const {
-  isDevisibleBy5,
-  isDevisibleBy3,
+  isDivisibleBy5,
+  isDivisibleBy3,
+  isDivisibleBy3Oand5,
   identity,
   cond,
   always,
@@ -9,26 +10,38 @@ const {
   compose
 } = require('./index');
 
-describe('isDevisibleBy5', () => {
+describe('isDivisibleBy5', () => {
 
   it('must return false if number is not a multiple of 5', () => {
-    expect(isDevisibleBy5(6)).toBe(false);
+    expect(isDivisibleBy5(6)).toBe(false);
   });
 
   it('must return true if number is a multiple of 5', () => {
-    expect(isDevisibleBy5(5)).toBe(true);
+    expect(isDivisibleBy5(5)).toBe(true);
   });
 
 });
 
-describe('isDevisibleBy3', () => {
+describe('isDivisibleBy3', () => {
 
   it('must return false if number is not a multiple of 3', () => {
-    expect(isDevisibleBy3(5)).toBe(false);
+    expect(isDivisibleBy3(5)).toBe(false);
   });
 
   it('must return true if number is a multiple of 3', () => {
-    expect(isDevisibleBy3(3)).toBe(true);
+    expect(isDivisibleBy3(3)).toBe(true);
+  });
+
+});
+
+describe('isDivisibleBy3Oand5', () => {
+
+  it('must return false if number is not a multiple of 3 and 5', () => {
+    expect(isDivisibleBy3Oand5(7)).toBe(false);
+  });
+
+  it('must return true if number is a multiple of 3 and 5', () => {
+    expect(isDivisibleBy3Oand5(15)).toBe(true);
   });
 
 });
@@ -74,12 +87,16 @@ describe('cond', () => {
 
 describe('trasformToFizzOrBuzz', () => {
 
-  it('must return fizz if vaue is a multiple of 3', () => {
+  it('must return Fizz if value is a multiple of 3', () => {
     expect(trasformToFizzOrBuzz(3)).toBe('Fizz')
   });
 
-  it('must return fuzz if vaue is a multiple of 5', () => {
+  it('must return Buzz if value is a multiple of 5', () => {
     expect(trasformToFizzOrBuzz(5)).toBe('Buzz')
+  });
+
+  it('must return FizzBuzz if value is a multiple of 5 and 3', () => {
+    expect(trasformToFizzOrBuzz(15)).toBe('FizzBuzz')
   });
 
   it('must act as identity if value if not a multiuple of 5 or 3', () => {
