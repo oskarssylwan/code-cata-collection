@@ -4,13 +4,7 @@ const isDivisibleBy3Oand5 = n => isDivisibleBy3(n) && isDivisibleBy5(n);
 const identity = n => n
 const always = x => () => x
 const compose = (...fns) => x => fns.reduce((acc, fn) => fn(acc), x);
-
-const cond = arr => x => arr.reduce((value, [pred, trans]) => {
-  if (value) return value;
-  if (pred(x)) return trans(x);
-  return value
-}
-, false);
+const cond = arr => x => arr.reduce((value, [pred, trans]) => value || pred(x) && trans(x), false);
 
 const trasformToFizzOrBuzz = cond([
   [isDivisibleBy3Oand5,  always('FizzBuzz')],
